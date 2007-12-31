@@ -34,7 +34,7 @@ const Login = () => {
     const body = {
       email,
       password,
-      ip: localStorage.getItem('ip'),
+      // ip: localStorage.getItem('ip'),
     }
 
     try {
