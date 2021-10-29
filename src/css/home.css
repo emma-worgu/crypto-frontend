@@ -1,0 +1,19 @@
+body {
+  color: #fff;
+  background-color: #490fb4;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.home-banner {
+  background: url('../assest/banner-bg.svg') no-repeat center / cover;
+  overflow: hidden;
+  padding: 190px 0px 110px 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ani
