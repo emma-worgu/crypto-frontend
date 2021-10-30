@@ -1,9 +1,10 @@
 import Home from './statelessComponent/home';
+import Dash from './statelessComponent/dash';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <Dash />
     </div>
   );
 }

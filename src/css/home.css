@@ -16,4 +16,328 @@ body {
   grid-template-columns: 1fr 1fr;
 }
 
-.ani
+.animation {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.position {
+  position: unset;
+}
+
+.banner-img {
+  animation: MoveUpDown 2s linear infinite;
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+
+.banner-head {
+  font-size: 50px;
+  padding-bottom: 10px;
+}
+
+.banner-des {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.banner-bt {
+  width: 12em;
+  height: 3.5em;
+  color: #fff;
+  background: #da4bfd;
+  border: 1px solid #da4bfd;
+  border-color: #da4bfd;
+  font-size: 16px;
+  border-radius: 5px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+@keyframes MoveUpDown {
+  0% {
+    position: relative; 
+    top:0;
+  }
+
+  50% {
+    position: relative;
+    top: 10px;
+  }
+
+  100% {
+    position: relative;
+    top: 0;
+  }
+}
+
+.hd {
+  background-color: #470fac;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.heading-div {
+  text-align: center !important;
+}
+
+.heading-title {
+  font-size: 40px;
+  font-weight: 600;
+  padding-bottom: 18px;
+  padding-top: 40px;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(200px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.heading-des {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.work-part {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.work-process {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 70px;
+  padding-bottom: 100px;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-200px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+
+.work-bg {
+  background: url('../assest/pattern.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rotation-img {
+  animation: rotation 15s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.work-process-title {
+  font-size: 30px;
+  max-width: 500px;
+  font-weight: 600;
+  padding-bottom: 25px;
+}
+
+.work-process-p {
+  max-width: 480px;
+  padding-bottom: 20px;
+}
+
+.check-list {
+  max-width: 500px;
+  margin: 0;
+  padding: 0;
+  list-style: circle;
+}
+
+.feature-section {
+  background-color: #490fb4;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 50px;
+}
+
+.feature-des {
+  max-width: 250px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: 120px;
+}
+
+.team-div {
+  display: flex;
+  align-items: center;
+}
+
+.team-img {
+  /* width: 300px; */
+  height: 140px;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 5px solid;
+  float: left;
+  transition: all 400ms ease;
+  margin-right: 30px;
+  border-color: #7d3cf4;
+}
+
+.team-des {
+  max-width: 280px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: 50px;
+  padding-top: 120px;
+  border-top: 1px solid;
+  border-color: #7d3cf4;
+}
+
+.footer-list {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  list-style: none;
+}
+
+
+.bg-pattern {
+  background: url('../assest//pattern.png');
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  body {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-head {
+    font-size: 30px;
+  }
+
+  .hero-txt {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-left: 8px;
+  }
+
+  .work-process, .row {
+    grid-template-columns: 1fr;
+  }
+
+  .team {
+    grid-template-columns: 1fr;
+    padding-bottom: 0;
+  }
+
+  .team-img {
+    height: 56px;
+    margin-left: 12px;
+  }
+
+  .footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    grid-template-columns: 1fr;
+  }
+
+  .rights {
+    text-align: center;
+  }
+
+  .feature-des {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 90%;
+  }
+
+  .banner-img {
+    margin-left: 30px;
+  }
+
+  .rotation-img {
+    max-width: 70%;
+  }
+
+  .heading-title {
+    font-size: 25px;
+    padding-bottom: 10px;
+  }
+
+  .member {
+    font-size: 20px;
+    margin-top: 65px;
+  }
+
+  .text-align {
+    text-align: center;
+  }
+
+  .team-div {
+    justify-content: center;
+  }
+}
