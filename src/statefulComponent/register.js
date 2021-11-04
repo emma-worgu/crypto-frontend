@@ -20,33 +20,33 @@ const Register = () => {
     setPassword(e.target.value);
   };
 
-  // const getIp = async () => {
-  //   try {
-  //     const url = 'https://checkip.amazonaws.com/';
+  const getIp = async () => {
+    try {
+      const url = 'https://checkip.amazonaws.com/';
 
-  //     const response = await fetch(url, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/text',
-  //         'Accept': 'application/text',
-  //         'Access-Control-Allow-Origin': 'http://localhost:3000/register',
-  //         'mode': 'no-cors',
-  //       },
-  //     });
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/text',
+          'Accept': 'application/text',
+          'Access-Control-Allow-Origin': '*',
+          'mode': 'no-cors',
+        },
+      });
 
-  //     const request = await response.text();
-  //     // const ip = request;
-  //     console.log(request);
+      const request = await response.text();
+      // const ip = request;
+      console.log(request);
 
 
-  //   // return ip;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+    // return ip;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // console.log(getIp());
-  // getIp()
+  console.log(getIp());
+  getIp()
 
   const onClickHandler = async () => {
     setLoading(true);
