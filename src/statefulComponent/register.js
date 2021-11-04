@@ -27,6 +27,7 @@ const Register = () => {
       name,
       email,
       password,
+      ip: localStorage.getItem('ip'),
     }
 
     try {
