@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import RegisterForm from '../statelessComponent/login_register_Form';
 
-const Register = async () => {
+const Register = () => {
   const[loading, setLoading] = useState(false);
 
 
@@ -20,33 +20,6 @@ const Register = async () => {
     setPassword(e.target.value);
   };
 
-  // const getIp = async () => {
-  //   try {
-  //     const url = 'https://checkip.amazonaws.com/';
-
-  //     const response = await fetch(url, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/text',
-  //         'Accept': 'application/text',
-  //         'Access-Control-Allow-Origin': '*',
-  //         'mode': 'no-cors',
-  //       },
-  //     });
-
-  //     const request = await response.text();
-  //     // const ip = request;
-  //     console.log(request);
-
-
-  //   // return ip;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // console.log(getIp());
-  // await getIp()
 
   const onClickHandler = async () => {
     setLoading(true);
@@ -73,7 +46,7 @@ const Register = async () => {
       console.log(response);
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      // console.log(error);
     }
   };
   return (
