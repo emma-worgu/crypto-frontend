@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import RegisterForm from '../statelessComponent/login_register_Form';
 
-const Register = () => {
+const Register = async () => {
   const[loading, setLoading] = useState(false);
 
 
@@ -46,7 +46,7 @@ const Register = () => {
   };
 
   console.log(getIp());
-  getIp()
+  await getIp()
 
   const onClickHandler = async () => {
     setLoading(true);
