@@ -18,7 +18,7 @@ import Team4 from '../assest/team-4.jpg';
 
 const Home = () => {
   return (
-    <div>
+    <div className='home-body'>
       <Nav />
       <div>
         <section className='home-banner'>
@@ -173,6 +173,73 @@ const Home = () => {
                 <div className='team-des'>
                   <h2 className='member'>John Doe</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor it amet, consectetur</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className='investment'>
+          <div>
+            <div className='heading-div' style={{ paddingBottom: 65, }}>
+              <label></label>
+              <h2 className='heading-title'>Our Investment Plans</h2>
+              <p className='heading-des'>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem</p>
+            </div>
+            <div className='investment-cards'>
+              <div className='investment-card'>
+                <div className='bronze-head'>
+                  <h5>Bronze</h5>
+                </div>
+                <div className='bronze-body'>
+                  <p>4.5% After 8 hours</p>
+                  <p>10% Referral Bonus</p>
+                  <p>Instant Cashback</p>
+                  <p>24/7 Tech Support</p>
+                  <div>
+                    <button className='investment-button'>Get Started</button>
+                  </div>
+                </div>
+              </div>
+              <div className='investment-card'>
+                <div className='bronze-head'>
+                  <h5>Silver</h5>
+                </div>
+                <div className='bronze-body'>
+                  <p>5.0% After 24 hours</p>
+                  <p>15% Referral Bonus</p>
+                  <p>Instant Cashback</p>
+                  <p>24/7 Tech Support</p>
+                  <div>
+                    <button className='investment-button'>Get Started</button>
+                  </div>
+                </div>
+              </div>
+              <div className='investment-card'>
+                <div className='bronze-head'>
+                  <h5>Gold</h5>
+                </div>
+                <div className='bronze-body'>
+                  <p>6.5% After 48 hours</p>
+                  <p>20% Referral Bonus</p>
+                  <p>Instant Cashback</p>
+                  <p>24/7 Tech Support</p>
+                  <div>
+                    <button className='investment-button'>Get Started</button>
+                  </div>
+                </div>
+              </div>
+              <div className='investment-card'>
+                <div className='bronze-head'>
+                  <h5>Diamond</h5>
+                </div>
+                <div className='bronze-body'>
+                  <p>7.0% After 3 days</p>
+                  <p>25% Referral Bonus</p>
+                  <p>Instant Cashback</p>
+                  <p>24/7 Tech Support</p>
+                  <div>
+                    <button className='investment-button'>Get Started</button>
+                  </div>
                 </div>
               </div>
             </div>

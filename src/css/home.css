@@ -1,4 +1,4 @@
-body {
+.home-body {
   color: #fff;
   background-color: #490fb4;
   margin-left: 40px;
@@ -21,6 +21,10 @@ body {
   animation-fill-mode: both;
 }
 
+.logo > h1 {
+  color: #fff;
+}
+
 .position {
   position: unset;
 }
@@ -36,6 +40,7 @@ body {
 .banner-head {
   font-size: 50px;
   padding-bottom: 10px;
+  color: #fff;
 }
 
 .banner-des {
@@ -187,6 +192,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding-top: 50px;
+  background: url('../assest/bitcoin.png') no-repeat center / cover;
 }
 
 .feature-des {
@@ -261,8 +267,44 @@ img {
   max-width: 100%;
 }
 
+.investment-cards {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: space-around;
+  padding: 20px;
+  margin-bottom: 120px;
+}
+
+.investment-card {
+  border: none;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 15%), 0 10px 10px rgb(0 0 0 / 5%);
+  padding: 40px;
+  background-color: #7C6696;
+}
+
+.bronze-head {
+  font-size: 30px;
+}
+
+.bronze-body {
+  font-size: 20px;
+}
+
+.investment-button {
+  width: 100%;
+  height: 2.5em;
+  border-radius: .5em;
+  margin-top: 15px;
+  background-color: #da4bfd;
+  color: #fff;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 15%), 0 10px 10px rgb(0 0 0 / 5%);
+  outline: none;
+  border: none;
+  font-weight: 900;
+}
+
 @media screen and (max-width: 991px) {
-  body {
+  .home-body {
     margin-left: 12px;
     margin-right: 12px;
   }
@@ -339,5 +381,14 @@ img {
 
   .team-div {
     justify-content: center;
+  }
+
+  .investment-cards {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+  }
+
+  .investment-card {
+    margin-bottom: 30px;
   }
 }

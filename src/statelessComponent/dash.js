@@ -17,8 +17,8 @@ const Dash = () => {
     setIsClose(!isClose);
   };
   return (
-    <div>
-      <NavModel />
+    <div className='dash-body'>
+      {/* <NavModel /> */}
       <div className='dash-hd'>
         <div className='harm-hd'>
           <button>Menu</button>

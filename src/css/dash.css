@@ -1,9 +1,9 @@
 /* Change the body to avoid other files been overwritten */
 
-body {
-  background-color: #fff;
-  margin-left: 0;
-  margin-right: 0;
+.dash-body {
+  background-color: #fff !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .wallet-card-section::before {
