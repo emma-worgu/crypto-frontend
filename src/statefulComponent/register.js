@@ -44,7 +44,7 @@ const Register = () => {
     }
 
     try {
-      const url = 'http://localhost:5000/api/user/register';
+      const url = 'https://crypto-backend1.herokuapp.com/api/user/register';
 
       const request = await fetch(url, {
         method: 'POST',
