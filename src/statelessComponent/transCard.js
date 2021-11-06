@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TransCard = () => {
+const TransCard = ({ status, amount}) => {
   return (
     <div>
       <div className='lg-card'>
-        <p className='trans-name'>Callistus</p>
-        <p className='credit'>+ $300</p>
+        <p className='trans-name'>{status}</p>
+        <p className='processing'>- ${amount}</p>
       </div>
     </div>
   );

@@ -146,6 +146,11 @@ h1 {
   font-size: 25px;
 }
 
+.processing {
+  color: blue;
+  font-size: 25px;
+}
+
 .debit {
   color: red;
   font-size: 25px;

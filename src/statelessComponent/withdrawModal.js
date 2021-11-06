@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import '../css/modal.css';
 
-const Modal = ({ isClose, amount, onAddAmount }) => {
-  const history = useHistory();
+const WithdrawModal = ({ 
+  isClose,
+  amount,
+  accountNumber,
+  routingNumber,
+  onAccountNumber,
+  onRoutingNumber,
+  onWithdrawalAmount,
+ }) => {
   const[loading, setLoading] = useState(false);
   const[message, setMessage] = useState('')
-
 
   const depoFunc = async () => {
     try {
       setLoading(true);
-    const url = 'https://crypto-backend1.herokuapp.com/api/user/deposit/';
+    const url = 'https://crypto-backend1.herokuapp.com/api/user/withdraw/';
   
       const body = {
+        accountNumber,
+        routingNumber,
         amount,
       };
   
@@ -35,8 +42,8 @@ const Modal = ({ isClose, amount, onAddAmount }) => {
           isClose = false;
           document.location.reload();
         } else {
-          setLoading(false);
           setMessage(response.message);
+          setLoading(false);
         }
     } catch (error) {
       setLoading(false);
@@ -46,27 +53,27 @@ const Modal = ({ isClose, amount, onAddAmount }) => {
     <div>
       <div className={isClose ? 'modalOpen' : 'modalClose'}>
         <div className='modal-head'>
-          <h1 style={{ fontSize: '25px', paddingTop: '20px'}}>Add Money</h1>
+          <h1 style={{ fontSize: '25px', paddingTop: '20px'}}>Withraw Money</h1>
         </div>
         <div className='modal-body'>
-          {/* <div className='modal-input'>
+          <div className='modal-input'>
             <label className='modal-text'>Account Number</label>
             <br/>
-            <input type='number' className='mdIn' />
+            <input type='number' className='mdIn' value={accountNumber} onChange={onAccountNumber}/>
           </div>
           <div className='modal-input'>
             <label className='modal-text'>Routing Number</label>
             <br/>
-            <input type='number' className='mdIn'/>
-          </div> */}
+            <input type='number' className='mdIn' value={routingNumber} onChange={onRoutingNumber}/>
+          </div>
           <div className='modal-input'>
             <label className='modal-text'>Amount</label>
             <br/>
-            <input type='number' className='mdIn' value={amount} onChange={onAddAmount}/>
+            <input type='number' className='mdIn' value={amount} onChange={onWithdrawalAmount}/>
           </div>
         </div>
         <div className='modal-bt'>
-          <button className='deposit' onClick={depoFunc}>{loading ? 'Depositing...' : 'Deposit'}</button>
+          <button className='deposit' onClick={depoFunc}>{loading ? 'Withdrawing...' : 'Withdraw'}</button>
         </div>
         <div>
           <h5 style={{color: 'red'}}>{message}</h5>
@@ -76,4 +83,4 @@ const Modal = ({ isClose, amount, onAddAmount }) => {
   );
 };
 
-export default Modal;
+export default WithdrawModal;

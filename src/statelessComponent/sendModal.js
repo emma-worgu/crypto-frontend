@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import '../css/modal.css';
 
 const SendModal = ({ 
-  sendModalClose, 
+  isClose,
   walletAddress,
   amount,
   onAmount,
@@ -37,7 +37,6 @@ const SendModal = ({
         const response = await request.json();
   
         if (request.status === 200) {
-          console.log(response);
           setId(response.id);
           return setBene(response.user)
         } else {
@@ -49,7 +48,9 @@ const SendModal = ({
   }, [walletAddress])
 
   const sendFunc = async () => {
-    const url = 'https://crypto-backend1.herokuapp.com/api/user/receipient';
+    try {
+      setLoading(true);
+    const url = 'https://crypto-backend1.herokuapp.com/api/user/transfer/';
   
       const body = {
         id,
@@ -58,7 +59,7 @@ const SendModal = ({
       };
   
         const request = await fetch(url, {
-          method: 'POST',
+          method: 'PUT',
           body: JSON.stringify(body),
           headers: {
             'Content-Type': 'application/json',
@@ -70,15 +71,23 @@ const SendModal = ({
         const response = await request.json();
 
         if (request.status === 200) {
+          setLoading(false);
+          isClose = false;
+          document.location.reload();
+        } else {
+          setLoading(false);
           setSend(response.message);
-          sendModalClose = false;
-          return;
         }
+    } catch (error) {
+      setSend('Something Went Wrong!!');
+      setLoading(false);
+    }
   };
+
 
   return (
     <div>
-      <div className={sendModalClose ? 'modalOpen' : 'modalClose'}>
+      <div className={isClose ? 'modalOpen' : 'modalClose'}>
         <div className='modal-head'>
           <h1 style={{ fontSize: '25px', paddingTop: '20px'}}>Send Money</h1>
         </div>
@@ -114,7 +123,10 @@ const SendModal = ({
           </div>
         </div>
         <div className='modal-bt'>
-          <button className='deposit'>Send</button>
+          <button className='deposit' onClick={sendFunc}>{loading ? 'Sending...' : 'Send'}</button>
+        </div>
+        <div>
+          <h5 style={{color: 'red'}}>{send}</h5>
         </div>
       </div>
     </div>

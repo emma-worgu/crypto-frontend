@@ -8,6 +8,7 @@ const DashComponent = () => {
 
   const[loading, setLoading] = useState(false);
   const[user, setUser] = useState('');
+  const[withdraws, setWithdraws] = useState([]);
 
   const getUser = async () => {
     try {
@@ -28,8 +29,37 @@ const DashComponent = () => {
       setLoading(false);
       
       if (request.status === 200) {
-        // console.log(request)
         setUser(response.user);
+        return;
+      }
+
+      if (request.status === 401 || request.status === 403) {
+        return history.push('/login');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getWithdrawals = async () => {
+    try {
+      setLoading(true);
+      const url = 'https://crypto-backend1.herokuapp.com/api/user/withdraws';
+
+      const request = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'auth-token': localStorage.getItem('jwt'),
+        }
+      });
+
+      const response = await request.json();
+      setLoading(false);
+      
+      if (request.status === 200) {
+        setWithdraws(response.withdrawals);
         return;
       }
 
@@ -45,12 +75,16 @@ const DashComponent = () => {
     getUser();
   }, [])
 
-  // console.log(user);
+  useEffect(() => {
+    getWithdrawals();
+  }, [])
+
   return (
     <div>
       <Dash
         user={user}
         loading={loading}
+        withdraws={withdraws}
       />
     </div>
   );
