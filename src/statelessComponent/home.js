@@ -199,7 +199,9 @@ const Home = () => {
                   <p>Instant Cashback</p>
                   <p>24/7 Tech Support</p>
                   <div>
-                    <button className='investment-button'>Get Started</button>
+                    <a href='/register'>
+                      <button className='investment-button'>Get Started</button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -213,7 +215,9 @@ const Home = () => {
                   <p>Instant Cashback</p>
                   <p>24/7 Tech Support</p>
                   <div>
-                    <button className='investment-button'>Get Started</button>
+                    <a href='/register'>
+                      <button className='investment-button'>Get Started</button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -227,7 +231,9 @@ const Home = () => {
                   <p>Instant Cashback</p>
                   <p>24/7 Tech Support</p>
                   <div>
-                    <button className='investment-button'>Get Started</button>
+                    <a href='/register'>
+                      <button className='investment-button'>Get Started</button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -241,7 +247,9 @@ const Home = () => {
                   <p>Instant Cashback</p>
                   <p>24/7 Tech Support</p>
                   <div>
-                    <button className='investment-button'>Get Started</button>
+                    <a href='/register'>
+                      <button className='investment-button'>Get Started</button>
+                    </a>
                   </div>
                 </div>
               </div>
