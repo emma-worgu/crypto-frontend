@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
 import LoginForm from '../statelessComponent/login_register_Form';
 
 const Login = () => {
+  const history = useHistory();
+
   const[loading, setLoading] = useState(false);
+  const[error, setError] = useState({
+    message: '',
+    isError: false,
+  });
+
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
 
@@ -14,15 +22,23 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  const closeError = () => {
+    setError({
+      isError: false,
+    });
+  };
+
+
   const onClickHandler = async () => {
     setLoading(true);
     const body = {
       email,
       password,
+      ip: localStorage.getItem('ip'),
     }
 
     try {
-      const url = 'http://localhost:5000/api/user/login';
+      const url = 'https://crypto-backend1.herokuapp.com/api/user/login/';
 
       const request = await fetch(url, {
         method: 'POST',
@@ -35,23 +51,35 @@ const Login = () => {
 
       const response = await request.json();
       setLoading(false);
-      console.log(response);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
+      if (request.status === 200) {
+        localStorage.setItem('jwt', response.token)
+        return history.push('/dash');
+      } else {
+        setError({
+          message: response.message,
+          isError: true,
+        });
       }
+    } catch (error) {
+      setLoading(false);
+      setError({
+        message: 'Something Went. Check Network Connectivity',
+        isError: true,
+      });
+    }
   };
-
   return (
     <LoginForm
-      loading={loading}
       email={email}
       password={password}
+      loading={loading}
+      error={error}
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}
       onClickHandler={onClickHandler}
+      closeError={closeError}
     />
   );
 };
 
-export default Login
+export default Login;

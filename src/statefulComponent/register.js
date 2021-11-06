@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import RegisterForm from '../statelessComponent/login_register_Form';
 
 const Register = () => {
+  const history = useHistory();
+
   const[loading, setLoading] = useState(false);
+  const[error, setError] = useState({
+    message: '',
+    isError: false,
+  });
 
 
   const[name, setName] = useState('');
@@ -20,6 +27,12 @@ const Register = () => {
     setPassword(e.target.value);
   };
 
+  const closeError = () => {
+    setError({
+      isError: false,
+    });
+  };
+
 
   const onClickHandler = async () => {
     setLoading(true);
@@ -31,7 +44,7 @@ const Register = () => {
     }
 
     try {
-      const url = 'https://crypto-backend1.herokuapp.com/api/user/register';
+      const url = 'http://localhost:5000/api/user/register';
 
       const request = await fetch(url, {
         method: 'POST',
@@ -44,10 +57,22 @@ const Register = () => {
 
       const response = await request.json();
       setLoading(false);
-      console.log(response);
+
+      if (request.status === 200) {
+        localStorage.setItem('jwt', response.token)
+        return history.push('/dash');
+      } else {
+        setError({
+          message: response.message,
+          isError: true,
+        });
+      }
     } catch (error) {
       setLoading(false);
-      // console.log(error);
+      setError({
+        message: 'Something Went. Check Network Connectivity',
+        isError: true,
+      });
     }
   };
   return (
@@ -56,10 +81,12 @@ const Register = () => {
       email={email}
       password={password}
       loading={loading}
+      error={error}
       onChangeName={onChangeName}
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}
       onClickHandler={onClickHandler}
+      closeError={closeError}
     />
   );
 };

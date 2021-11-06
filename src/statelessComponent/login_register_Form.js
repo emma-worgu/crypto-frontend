@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/loginForm.css';
+import ErrorModal from './errorModal';
 
 const Register_Login_Form = ({ 
   name, 
   email, 
   password,
   loading,
+  error,
   onChangeName,
   onChangeEmail,
   onChangePassword,
-  onClickHandler
+  onClickHandler,
+  closeError,
 }) => {
 
   const linkFunc = () => {
@@ -59,22 +62,28 @@ const Register_Login_Form = ({
   const header = document.location.pathname === '/login' ? 'Log In' : 'Register'
   const mobile = document.location.pathname === '/login' ? 'mobile login-card' : 'login-card';
   return (
-    <div className='login-body'  style={{ backgroundColor: 'black'}}>
-      <div className={mobile}>
-        <div className='card-header'>
-          <h2 className='card-h2'>{header}</h2>
-            {linkFunc()}
-        </div>
-        <div className='card-body'>
-          {inputFunc()}
-          <input type='text' placeholder='Email' className='card-input' id='email' value={email} onChange={onChangeEmail} required />
-          <input type='password' placeholder='Password' className='card-input' id='password' value={password} onChange={onChangePassword} required />
-          {resetPassFunc()}
-          <div className='login-button-div'>
-            <button className='login-button' onClick={onClickHandler}>{buttonText}</button>
+    <div>
+      <div className='login-body'  style={{ backgroundColor: 'black'}}>
+          <div className={mobile}>
+          <div className='card-header'>
+            <h2 className='card-h2'>{header}</h2>
+              {linkFunc()}
+          </div>
+          <div className='card-body'>
+            {inputFunc()}
+            <input type='text' placeholder='Email' className='card-input' id='email' value={email} onChange={onChangeEmail} required />
+            <input type='password' placeholder='Password' className='card-input' id='password' value={password} onChange={onChangePassword} required />
+            {resetPassFunc()}
+            <div className='login-button-div'>
+              <button className='login-button' onClick={onClickHandler}>{buttonText}</button>
+            </div>
           </div>
         </div>
       </div>
+      <ErrorModal
+        error={error}
+        closeError={closeError}
+      />
     </div>
   );
 };

@@ -9,7 +9,7 @@ const Nav = () => {
         <div className='container'>
           <div className='nav-section'>
             <div className='logo'>
-              <h1>LOGO</h1>
+              <h1>BINANCE FX CRYPTO</h1>
             </div>
             {/* <div>
               HOME

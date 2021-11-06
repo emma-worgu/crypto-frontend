@@ -1,0 +1,14 @@
+.loading-body {
+  background-color: #fff;
+}
+
+.loading-img {
+  max-width: 100%;
+  transform: translate(0, 50%);
+}
+
+@media screen and (max-width: 1024px) and (max-height: 700px) {
+  .loading-img {
+    transform: translate(70px, 20px);
+  }
+}

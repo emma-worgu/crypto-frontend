@@ -1,0 +1,22 @@
+.tele-img {
+  position: fixed;
+  bottom: 300px;
+  transform: translate(916px, 268px);
+}
+
+.tele-img {
+  border-radius: 100%;
+  border: 2px solid #da4bfd;
+}
+
+@media screen and (min-width: 400px) and (max-width: 420px) {
+  .tele-img {
+    transform: translate(300px, 230px);
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .tele-img {
+    transform: translate(240px, 230px);
+  }
+}

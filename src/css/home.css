@@ -335,6 +335,7 @@ img {
   .team-img {
     height: 56px;
     margin-left: 12px;
+    margin-top: 45px;
   }
 
   .footer {
@@ -379,9 +380,9 @@ img {
     text-align: center;
   }
 
-  .team-div {
+  /* .team-div {
     justify-content: center;
-  }
+  } */
 
   .investment-cards {
     display: grid;
