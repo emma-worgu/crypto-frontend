@@ -13,10 +13,14 @@ const Nav = () => {
             </div>
             <div className='sg-lg-bt'>
               <div className='sg-div'>
-                <button className='signup'>SignUp</button>
+                <a href='/register'>
+                  <button className='signup'>SignUp</button>
+                </a>
               </div>
               <div className='lg-div'>
-                <button className='login'>LogIn</button>
+                <a href='/login'>
+                  <button className='login'>LogIn</button>
+                </a>
               </div>
             </div>
           </div>
