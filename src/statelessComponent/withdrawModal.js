@@ -10,6 +10,7 @@ const WithdrawModal = ({
   onAccountNumber,
   onRoutingNumber,
   onWithdrawalAmount,
+  closewithdrawalModal,
  }) => {
   const[loading, setLoading] = useState(false);
   const[message, setMessage] = useState('')
@@ -51,7 +52,7 @@ const WithdrawModal = ({
   };
   return (
     <div>
-      <div className={isClose ? 'modalOpen' : 'modalClose'}>
+      <div className={isClose ? 'sendModalOpen' : 'modalClose'}>
         <div className='modal-head'>
           <h1 style={{ fontSize: '25px', paddingTop: '20px'}}>Withraw Money</h1>
         </div>
@@ -72,11 +73,16 @@ const WithdrawModal = ({
             <input type='number' className='mdIn' value={amount} onChange={onWithdrawalAmount}/>
           </div>
         </div>
-        <div className='modal-bt'>
-          <button className='deposit' onClick={depoFunc}>{loading ? 'Withdrawing...' : 'Withdraw'}</button>
-        </div>
         <div>
-          <h5 style={{color: 'red'}}>{message}</h5>
+          <h5 className='modal-error'>{message}</h5>
+        </div>
+        <div className='modal-bt'>
+          <div>
+            <button className='deposit' onClick={depoFunc}>{loading ? 'Withdrawing...' : 'Withdraw'}</button>
+          </div>
+          <div>
+            <button className='close' onClick={closewithdrawalModal}>Close</button>
+          </div>
         </div>
       </div>
     </div>

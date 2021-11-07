@@ -13,7 +13,8 @@ const DashComponent = () => {
   const getUser = async () => {
     try {
       setLoading(true);
-      const url = 'https://crypto-backend1.herokuapp.com/api/user/';
+      // const url = 'https://crypto-backend1.herokuapp.com/api/user/';
+      const url = document.location.origin === 'http://localhost:3000' ? 'http://localhost:5000/api/user/' : 'https://crypto-backend1.herokuapp.com/api/user/';
 
       const request = await fetch(url, {
         method: 'GET',

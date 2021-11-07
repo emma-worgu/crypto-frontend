@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import '../css/modal.css';
 
-const Modal = ({ isClose, amount, onAddAmount }) => {
-  const history = useHistory();
+const Modal = ({ isClose, amount, onAddAmount, closeModal }) => {
   const[loading, setLoading] = useState(false);
   const[message, setMessage] = useState('')
 
@@ -65,11 +63,16 @@ const Modal = ({ isClose, amount, onAddAmount }) => {
             <input type='number' className='mdIn' value={amount} onChange={onAddAmount}/>
           </div>
         </div>
-        <div className='modal-bt'>
-          <button className='deposit' onClick={depoFunc}>{loading ? 'Depositing...' : 'Deposit'}</button>
-        </div>
         <div>
-          <h5 style={{color: 'red'}}>{message}</h5>
+          <h5 className='modal-error'>{message}</h5>
+        </div>
+        <div className='modal-bt'>
+          <div>
+            <button className='deposit' onClick={depoFunc}>{loading ? 'Depositing...' : 'Deposit'}</button>
+          </div>
+          <div>
+            <button className='close' onClick={closeModal}>Close</button>
+          </div>
         </div>
       </div>
     </div>

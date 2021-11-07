@@ -6,14 +6,19 @@ const Nav = () => {
   return (
     <div>
       <header className='transition'>
-        <div className='container'>
+        <div className='nav-container'>
           <div className='nav-section'>
             <div className='logo'>
-              <h1>BINANCE FX CRYPTO</h1>
+              <h1 style={{color: 'yellow'}}>BINANCE FX CRYPTO</h1>
             </div>
-            {/* <div>
-              HOME
-            </div> */}
+            <div className='sg-lg-bt'>
+              <div className='sg-div'>
+                <button className='signup'>SignUp</button>
+              </div>
+              <div className='lg-div'>
+                <button className='login'>LogIn</button>
+              </div>
+            </div>
           </div>
         </div>
       </header>

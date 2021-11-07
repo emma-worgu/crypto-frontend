@@ -6,10 +6,13 @@ const SendModal = ({
   isClose,
   walletAddress,
   amount,
+  investmentBalance,
   onAmount,
   onWalletAddress,
   investment,
   onInvestment,
+  onInvBalance,
+  closeSendModal,
 }) => {
   const[bene, setBene] = useState('');
   const[send, setSend] = useState('');
@@ -50,12 +53,16 @@ const SendModal = ({
   const sendFunc = async () => {
     try {
       setLoading(true);
-    const url = 'https://crypto-backend1.herokuapp.com/api/user/transfer/';
+    // const url = 'https://crypto-backend1.herokuapp.com/api/user/transfer/';
+    const url = document.location.origin === 'http://localhost:3000' ? 'http://localhost:5000/api/user/transfer/' : 'https://crypto-backend1.herokuapp.com/api/user/transfer/';
+
+    console.log(url);
   
       const body = {
         id,
         plan: investment,
         amount,
+        investmentBalance,
       };
   
         const request = await fetch(url, {
@@ -87,7 +94,7 @@ const SendModal = ({
 
   return (
     <div>
-      <div className={isClose ? 'modalOpen' : 'modalClose'}>
+      <div className={isClose ? 'sendModalOpen' : 'modalClose'}>
         <div className='modal-head'>
           <h1 style={{ fontSize: '25px', paddingTop: '20px'}}>Send Money</h1>
         </div>
@@ -117,16 +124,26 @@ const SendModal = ({
             </select>
           </div>
           <div className='modal-input'>
-            <label className='modal-text'>Amount</label>
+            <label className='modal-text'>Profit</label>
             <br/>
             <input type='number' className='mdIn' value={amount} onChange={onAmount}/>
           </div>
-        </div>
-        <div className='modal-bt'>
-          <button className='deposit' onClick={sendFunc}>{loading ? 'Sending...' : 'Send'}</button>
+          <div className='modal-input'>
+            <label className='modal-text'>Investment</label>
+            <br/>
+            <input type='number' className='mdIn' value={investmentBalance} onChange={onInvBalance}/>
+          </div>
         </div>
         <div>
-          <h5 style={{color: 'red'}}>{send}</h5>
+          <h5 className='modal-error'>{send}</h5>
+        </div>
+        <div className='modal-bt'>
+          <div>
+            <button className='deposit' onClick={sendFunc}>{loading ? 'Sending...' : 'Send'}</button>
+          </div>
+          <div>
+            <button className='close' onClick={closeSendModal}>Close</button>
+          </div>
         </div>
       </div>
     </div>

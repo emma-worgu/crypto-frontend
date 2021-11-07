@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import TransCard from './transCard';
 import Modal from './modal';
@@ -10,20 +11,17 @@ import Loading from './loading';
 import '../css/dash.css';
 
 const Dash = ({ user, loading, withdraws, }) => {
-  const { name, email, accountBalance, isClient, investmentPlan, } = user;
-  let profit = 0;
+  const history = useHistory();
 
-  if (investmentPlan === undefined) {
-    profit = 0
-  } else {
-    profit = investmentPlan.profit;
-  }
+  const { name, accountBalance, isClient, } = user;
+  
 
   const [isClose, setIsClose] = useState(false);
   const[walletAddress, setWalletAddress] = useState('');
   const[amount, setAmount] = useState('');
   const[investment, setInvestment] = useState('');
   const[addAmount, setAddAmount] = useState('');
+  const[investmentBalance, setInvestmentBalance] = useState('');
 
   const onWalletAddress = (e) => {
     setWalletAddress(e.target.value);
@@ -35,6 +33,10 @@ const Dash = ({ user, loading, withdraws, }) => {
 
   const onInvestment = (e) => {
     setInvestment(e.target.value);
+  };
+
+  const onInvBalance = (e) => {
+    setInvestmentBalance(e.target.value);
   };
 
   const closeModal = () => {
@@ -49,6 +51,8 @@ const Dash = ({ user, loading, withdraws, }) => {
     setIsClose(!isClose);
   };
 
+  // Send Methods
+
   let [sendModalClose, setSendModalClose] = useState(false);
 
   const closeSendModal = () => {
@@ -58,6 +62,8 @@ const Dash = ({ user, loading, withdraws, }) => {
   const openSendModal = () => {
     setSendModalClose(!sendModalClose);
   };
+
+  // Send methods Ends Here
 
   // Withdrawal Methods
 
@@ -81,7 +87,7 @@ const Dash = ({ user, loading, withdraws, }) => {
   // Withdrawal Methods Ends Here
 
   const closewithdrawalModal = () => {
-    setSendModalClose(false);
+    setWithdrawalModalClose(false);
   };
 
   const openwithdrawalModal = () => {
@@ -101,12 +107,17 @@ const Dash = ({ user, loading, withdraws, }) => {
         />
       );
     }
-    const mappedData = withdraws.map(data => <TransCard status={data.status} amount={data.amount} />);
+    const mappedData = withdraws.map(data => <TransCard key={data._id} status={data.status} amount={data.amount} />);
     return (
       <div>
         {mappedData}
       </div>
     );
+  };
+
+  const logoutFunc = () => {
+    localStorage.removeItem('jwt');
+    history.push('/');
   };
 
   if (loading) {
@@ -124,6 +135,9 @@ const Dash = ({ user, loading, withdraws, }) => {
           <div className='logo-hd' style={{marginLeft: '10px'}}>
             <h3 style={{color: 'yellow'}}>BINANCE CRYPTO FX</h3>
           </div>
+          <div className='harm-hd'>
+            <button className='logout' onClick={logoutFunc}>Log Out</button>
+          </div>
         </div>
         <div className='wallet-card-section section pt-1'>
           <div className='wallet-card' >
@@ -131,7 +145,7 @@ const Dash = ({ user, loading, withdraws, }) => {
               <div className='left' onClick={closeModal}>
                 <h2 className='total' style={{ color: 'green'}}>Hi, {name}</h2>
                 <span className='title'>Total Balance</span>
-                <h1 className='total'>$ {accountBalance}</h1>
+                <h1 className='total'>$ {accountBalance === undefined ? 0 : accountBalance.toLocaleString('en-US')}</h1>
               </div>
               <div className={addMoney}>
                 <a href='#' className='button'>
@@ -140,8 +154,11 @@ const Dash = ({ user, loading, withdraws, }) => {
               </div>
             </div>
             <div>
-                <h4>Your Wallet Address: <p style={{color: 'green'}}>{user.walletAddress}</p></h4>
-              </div>
+              <h4>Your Wallet Address: <p style={{color: 'green'}}>{user.walletAddress}</p></h4>
+            </div>
+            <div className='referral'>
+              <h4>Your Referral Code: <p style={{color: '#FD0F6A'}}>{`${document.location.origin}/referral?${user.id}`}</p></h4>
+            </div>
             <div className='wallet-footer'>
               <div className='item'>
                 <div className='item'>
@@ -158,11 +175,11 @@ const Dash = ({ user, loading, withdraws, }) => {
             <div className='trans-card'>
               <div className='sm-card'>
                 <span className='title align-center'>Investment</span>
-                <h1 className='total align-center'>$ {accountBalance}</h1>
+                <h1 className='total align-center'>$ {user.investmentBalance === undefined ? 0 : user.investmentBalance.toLocaleString('en-US')}</h1>
               </div>
               <div className='sm-card'>
                 <span className='title align-center'>Profit Balance</span>
-                <h1 className='total align-center'>$ {isNaN(accountBalance * profit) ? 0 :  accountBalance * profit}</h1>
+                <h1 className='total align-center'>$ {accountBalance === undefined ? 0 : accountBalance.toLocaleString('en-US')}</h1>
               </div>
             </div>
             <div className='trans-card'>
@@ -197,15 +214,19 @@ const Dash = ({ user, loading, withdraws, }) => {
           isClose={isClose}
           amount={addAmount}
           onAddAmount={onAddAmount}
+          closeModal={closeModal}
         />
         <SendModal 
           isClose={sendModalClose}
           walletAddress={walletAddress}
           amount={amount}
           investment={investment}
+          investmentBalance={investmentBalance}
           onAmount={onAmount}
           onWalletAddress={onWalletAddress}
           onInvestment={onInvestment}
+          onInvBalance={onInvBalance}
+          closeSendModal={closeSendModal}
         />
         <WithdrawModal
           isClose={withdrawalModalClose}
@@ -215,6 +236,7 @@ const Dash = ({ user, loading, withdraws, }) => {
           onAccountNumber={onAccountNumber}
           onRoutingNumber={onRoutingNumber}
           onWithdrawalAmount={onWithdrawalAmount}
+          closewithdrawalModal={closewithdrawalModal}
         />
       </div>
     );
